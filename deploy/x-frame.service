@@ -1,0 +1,33 @@
+[Unit]
+Description=X-Frame - AI API Gateway Platform
+Documentation=https://github.com/x-frame/x-frame
+After=network.target postgresql.service redis.service
+Wants=postgresql.service redis.service
+
+[Service]
+Type=simple
+User=x-frame
+Group=x-frame
+WorkingDirectory=/opt/x-frame
+ExecStart=/opt/x-frame/x-frame
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=x-frame
+
+# Security hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/opt/x-frame
+
+# Environment - Server configuration
+# Modify these values to change listen address and port
+Environment=GIN_MODE=release
+Environment=SERVER_HOST=0.0.0.0
+Environment=SERVER_PORT=8080
+
+[Install]
+WantedBy=multi-user.target

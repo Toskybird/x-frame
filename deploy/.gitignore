@@ -1,0 +1,40 @@
+# =============================================================================
+# X-Frame Deploy Directory - Git Ignore
+# =============================================================================
+
+# Data directories (generated at runtime when using docker-compose.local.yml)
+data/
+postgres_data/
+redis_data/
+
+# Environment configuration (contains sensitive information)
+.env
+
+# Backup files
+*.backup
+*.bak
+
+# Temporary files
+*.tmp
+*.log
+
+# Intranet offline packages (large; keep locally / copy by media)
+_internal/**/*.tar
+_internal/**/*.tar.gz
+_internal/windows/**
+_internal/docker-images/**
+_internal/manifest*.txt
+_internal/portable/packages/**
+_internal/portable/pgsql/**
+_internal/portable/redis/**
+_internal/portable/data/**
+_internal/portable/logs/**
+_internal/portable/.env.portable
+!_internal/README.md
+!_internal/scripts/**
+!_internal/portable/.env.portable.example
+!_internal/portable/.gitkeep
+!_internal/.gitkeep
+
+# Infra-only env (may contain local passwords)
+.env.infra
